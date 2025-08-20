@@ -10,10 +10,38 @@ class LoginPageLocaters:
     SIGN_IN = (By.XPATH, '//*[@data-l="t,sign_in"]')
     SIGN_QR = (By.XPATH, '//*[@data-l="t,get_qr"]')
     CANNOT_LOG_IN = (By.XPATH, '//*[@data-l="t,get_qr"]')
-    REGISTRATION = (By.XPATH,'//*[@id="tabpanel-login-9911528512"]/form/div[4]/div[2]/a')
+    REGISTRATION_BUTTON = (By.XPATH,'//div[@class="external-oauth-login-footer"]/a[@data-l="t,register"]')
     LOG_IN_VK = (By.XPATH, '//*[@data-l="t,vkc"]')
     LOG_IN_MAIL = (By.XPATH, '//*[@data-l="t,mailru"]')
     LOG_IN_YANDEX = (By.XPATH, '//*[@data-l="t,yandex"]')
+    ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocaters.LOGIN_FIELD)
+        self.find_element(LoginPageLocaters.LOGIN_BUTTON)
+        self.find_element(LoginPageLocaters.LOGIN_TAB)
+        self.find_element(LoginPageLocaters.QR_TAB)
+        self.find_element(LoginPageLocaters.PASSWORD_FIELD)
+        self.find_element(LoginPageLocaters.SIGN_IN)
+        self.find_element(LoginPageLocaters.SIGN_QR)
+        self.find_element(LoginPageLocaters.CANNOT_LOG_IN)
+        self.find_element(LoginPageLocaters.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocaters.LOG_IN_VK)
+        self.find_element(LoginPageLocaters.LOG_IN_MAIL)
+        self.find_element(LoginPageLocaters.LOG_IN_YANDEX)
+
+    def click_login(self):
+        self.find_element(LoginPageLocaters.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocaters.ERROR_TEXT).text
+
+    def error_password(self):
+        self.find_element(LoginPageLocaters.PASSWORD_FIELD).send_keys("test")
+
+
