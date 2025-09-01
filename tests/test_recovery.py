@@ -3,7 +3,7 @@ import allure
 from core.Base_Test import browser
 from pages.Base_Page import BasePageHelper
 from pages.Login_Page import LoginPageHelper
-from pages.Recovery_Page import RecoveryPageHelperHelper
+from pages.Recovery_Page import RecoveryPageHelper
 
 BASE_URL = "https://ok.ru/"
 LOGIN_TEXT = "email"
@@ -21,4 +21,4 @@ def test_go_to_recovery_after_many_fails(browser):
         Login_Page.click_login()
 
     Login_Page.click_recovery()
-    RecoveryPageHelperHelper(browser)
+    RecoveryPageHelper(browser)
